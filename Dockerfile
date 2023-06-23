@@ -4,8 +4,8 @@ ARG WSO2_RELEASE_URL=https://github.com/wso2/product-apim/archive/refs/tags
 ARG WSO2_RELEASE_VERSION=4.2.0
 
 RUN wget ${WSO2_RELEASE_URL}/v${WSO2_RELEASE_VERSION}.zip && \
-    unzip ${WSO2_RELEASE_VERSION}.zip && \
-    rm ${WSO2_RELEASE_VERSION}.zip
+    unzip v${WSO2_RELEASE_VERSION}.zip && \
+    rm v${WSO2_RELEASE_VERSION}.zip
 
 WORKDIR /product-apim-${WSO2_RELEASE_VERSION}
 
