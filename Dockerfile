@@ -104,7 +104,7 @@ COPY --chown=wso2carbon:wso2 docker-entrypoint.sh ${USER_HOME}/
 
 ARG WSO2_RELEASE_VERSION=4.2.0
 
-COPY --from=builder --chown=wso2carbon:wso2 /product-apim-${WSO2_RELEASE_VERSION}/modules/distribution/target/wso2am-${WSO2_SERVER_VERSION}.zip .
+COPY --from=builder --chown=wso2carbon:wso2 /product-apim-${WSO2_RELEASE_VERSION}/modules/distribution/product/target/wso2am-${WSO2_SERVER_VERSION}.zip .
 
 # add the WSO2 product distribution to user's home directory
 RUN \
