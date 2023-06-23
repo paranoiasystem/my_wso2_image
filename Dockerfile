@@ -5,7 +5,8 @@ ARG WSO2_RELEASE_VERSION=v4.2.0
 
 RUN wget ${WSO2_RELEASE_URL}/${WSO2_RELEASE_VERSION}.zip && \
     unzip ${WSO2_RELEASE_VERSION}.zip && \
-    rm ${WSO2_RELEASE_VERSION}.zip
+    rm ${WSO2_RELEASE_VERSION}.zip && \
+    ls
 
 WORKDIR /product-apim-${WSO2_RELEASE_VERSION}
 
