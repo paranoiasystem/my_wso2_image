@@ -1,14 +1,15 @@
 FROM maven:3.6.3-jdk-11 as builder
 
 ARG WSO2_RELEASE_URL=https://github.com/wso2/product-apim/archive/refs/tags
-ARG WSO2_RELEASE_VERSION=v4.2.0
+ARG WSO2_RELEASE_VERSION=4.2.0
 
-RUN wget ${WSO2_RELEASE_URL}/${WSO2_RELEASE_VERSION}.zip && \
+RUN wget ${WSO2_RELEASE_URL}/v${WSO2_RELEASE_VERSION}.zip && \
     unzip ${WSO2_RELEASE_VERSION}.zip && \
-    ls && \
-    cd /product-apim-${WSO2_RELEASE_VERSION} && \
-    ls && \
-    mvn clean install -Dmaven.test.skip=true
+    rm ${WSO2_RELEASE_VERSION}.zip
+
+WORKDIR /product-apim-${WSO2_RELEASE_VERSION}
+
+RUN mvn clean install -Dmaven.test.skip=true
 
 # ------------------------------------------------------------------------
 #
