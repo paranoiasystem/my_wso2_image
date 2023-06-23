@@ -102,7 +102,7 @@ RUN \
 # copy init script to user home
 COPY --chown=wso2carbon:wso2 docker-entrypoint.sh ${USER_HOME}/
 
-COPY --from=builder --chown=wso2carbon:wso2 /product-apim/modules/distribution/target/wso2am-${WSO2_SERVER_VERSION}.zip .
+COPY --from=builder --chown=wso2carbon:wso2 /product-apim-${WSO2_RELEASE_VERSION}/modules/distribution/target/wso2am-${WSO2_SERVER_VERSION}.zip .
 
 # add the WSO2 product distribution to user's home directory
 RUN \
