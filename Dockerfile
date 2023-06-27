@@ -119,6 +119,10 @@ RUN \
     && cp -r ${WSO2_SERVER_HOME}/repository/deployment/server/executionplans ${USER_HOME}/wso2-tmp \
     && rm -f ${WSO2_SERVER}.zip
 
+ARG MYSQL_CONNECTOR_VERSION=8.0.17
+
+ADD --chown=wso2carbon:wso2 https://repo1.maven.org/maven2/mysql/mysql-connector-java/${MYSQL_CONNECTOR_VERSION}/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar ${WSO2_SERVER_HOME}/repository/components/dropins/
+
 # remove unnecesary packages
 RUN apk del netcat-openbsd
 
@@ -135,9 +139,3 @@ EXPOSE 9763 9443 9999 11111 8280 8243 5672 9711 9611 9099
 
 # initiate container and start WSO2 Carbon server
 ENTRYPOINT ["/home/wso2carbon/docker-entrypoint.sh"]
-
-FROM base as wso2am
-
-ARG MYSQL_CONNECTOR_VERSION=8.0.17
-
-ADD --chown=wso2carbon:wso2 https://repo1.maven.org/maven2/mysql/mysql-connector-java/${MYSQL_CONNECTOR_VERSION}/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar ${WSO2_SERVER_HOME}/repository/components/dropins/
